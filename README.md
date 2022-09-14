@@ -1,0 +1,1 @@
+A hyper casual game based on 2048 game mechanic.
