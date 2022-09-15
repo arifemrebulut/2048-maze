@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.MoveEvent += Move;
+        EventManager.MergeNumbersEvent += MergeNumbers;
     }
 
     private void OnDisable()
     {
         EventManager.MoveEvent -= Move;
+        EventManager.MergeNumbersEvent -= MergeNumbers;
     }
 
     private void Start()
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour
                     if (merge)
                     {
                         EventManager.CallMergeNumbersEvent();
+
+                        Destroy(hit.transform.gameObject);
                     }
                     canMove = true;
                 });
@@ -101,5 +105,12 @@ public class PlayerController : MonoBehaviour
         }
 
         return targetPosition;
+    }
+
+    private void MergeNumbers()
+    {
+        currentPlayerNumber *= 2;
+
+        numberText.text = currentPlayerNumber.ToString();
     }
 }
