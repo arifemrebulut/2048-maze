@@ -16,25 +16,24 @@ public class LevelManager : MonoBehaviour
 
     public int initialPlayerNumber { get; private set; }
 
-    public static LevelManager instance;
+    public static LevelManager Instance { get; private set; }
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
 
         {
-            instance = this;
-            DontDestroyOnLoad(this);
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(this);
+            Instance = this;
         }
     }
 
     private void Start()
     {
-        currentLevelIndex = GameManager.instance.currentLevelIndex;
+        currentLevelIndex = GameManager.Instance.currentLevelIndex;
         currentLevel = levels[currentLevelIndex];
         initialPlayerNumber = currentLevel.initialPlayerNumber;
 
@@ -63,8 +62,6 @@ public class LevelManager : MonoBehaviour
     private GameObject CreatePrefab(Color color, Vector3 position, Vector3 offset, Transform parentObject)
     {
         GameObject prefab = GetPrefabFromColor(color);
-
-        Debug.Log("Prefab : " + prefab.name);
 
         return Instantiate(prefab, position - offset, Quaternion.identity, parentObject);
     }

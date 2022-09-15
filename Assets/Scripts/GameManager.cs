@@ -5,18 +5,17 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int currentLevelIndex = 0;
     [HideInInspector] public GameStatus currentGameStatus = GameStatus.Playing;
 
-    public static GameManager instance;
+    public static GameManager Instance;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(this);
+            Destroy(Instance);
         }
         else
         {
-            Destroy(this);
+            Instance = this;
         }
     }
 
