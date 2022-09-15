@@ -5,7 +5,7 @@ public class NumberCube : MonoBehaviour
 {
     [SerializeField] private TextMeshPro numberText;
 
-    public NumberCubeData numberCubeData { get; private set; }
+    public NumberCubeData numberCubeData;
 
     void Start()
     {

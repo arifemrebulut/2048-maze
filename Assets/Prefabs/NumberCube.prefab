@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7324695267098842582}
-  m_Layer: 0
+  - component: {fileID: 8233136078521456419}
+  - component: {fileID: 5446921778037809988}
+  m_Layer: 6
   m_Name: NumberCube
   m_TagString: NumberCube
   m_Icon: {fileID: 0}
@@ -32,6 +34,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8233136078521456419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324695267098842583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef829bc19c1b7734db86e13e7f82c9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberText: {fileID: 7324695267426532618}
+  numberCubeData: {fileID: 11400000, guid: b9e01ef67b34b7e43aaae03cc35c7c18, type: 2}
+--- !u!65 &5446921778037809988
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324695267098842583}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7324695267336823766
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +72,6 @@ GameObject:
   - component: {fileID: 7324695267336823765}
   - component: {fileID: 7324695267336823770}
   - component: {fileID: 7324695267336823771}
-  - component: {fileID: 7324695267336823764}
   m_Layer: 6
   m_Name: Graphic
   m_TagString: NumberCube
@@ -117,19 +145,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7324695267336823764
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324695267336823766}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7324695267426532612
 GameObject:
   m_ObjectHideFlags: 0

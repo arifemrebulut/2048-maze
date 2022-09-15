@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbec2c38215d1843ba92f81d3ffbf9b, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: 
-  cubeNumber: 0
+  cubeNumber: 4

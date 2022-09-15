@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public static class EventManager
 {
@@ -13,7 +14,9 @@ public static class EventManager
 
     // Player Events
     public static Action MergeNumbersEvent;
+    public static Action<Vector3> MoveEvent;
 
     public static void CallMergeNumbersEvent() => MergeNumbersEvent?.Invoke();
+    public static void CallMoveEvent(Vector3 direction) => MoveEvent?.Invoke(direction);
 }
 
