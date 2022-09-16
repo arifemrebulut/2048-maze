@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: 128
   m_EditorClassIdentifier: 
   cubeNumber: 128
+  cubeColor: {r: 0, g: 0.46666667, b: 0.7137255, a: 0}

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: 16
   m_EditorClassIdentifier: 
   cubeNumber: 16
+  cubeColor: {r: 0.28235295, g: 0.7921569, b: 0.89411765, a: 0}

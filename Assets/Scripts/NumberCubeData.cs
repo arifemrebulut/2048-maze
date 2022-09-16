@@ -4,4 +4,5 @@ using UnityEngine;
 public class NumberCubeData : ScriptableObject
 {
     public int cubeNumber;
+    public Color cubeColor;
 }

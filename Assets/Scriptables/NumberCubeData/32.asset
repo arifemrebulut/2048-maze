@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: 32
   m_EditorClassIdentifier: 
   cubeNumber: 32
+  cubeColor: {r: 0, g: 0.7058824, b: 0.84705883, a: 0}

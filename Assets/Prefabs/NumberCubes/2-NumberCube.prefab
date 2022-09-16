@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8233136078521456419}
   - component: {fileID: 5446921778037809988}
   m_Layer: 6
-  m_Name: NumberCube
+  m_Name: 2-NumberCube
   m_TagString: NumberCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberText: {fileID: 7324695267426532618}
+  meshRenderer: {fileID: 7324695267336823771}
   numberCubeData: {fileID: 11400000, guid: b9e01ef67b34b7e43aaae03cc35c7c18, type: 2}
 --- !u!65 &5446921778037809988
 BoxCollider:

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: 2048
   m_EditorClassIdentifier: 
   cubeNumber: 2048
+  cubeColor: {r: 0.011764706, g: 0.015686275, b: 0.09803922, a: 0}
