@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 5647354512915773565}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,6 +316,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.05
+  punchScale: {x: 0.2, y: 0.05, z: 0.2}
+  punchScaleDuration: 0.3
+  punchScaleVibrato: 5
+  punchScaleElasticity: 1
   tilesLayer:
     serializedVersion: 2
     m_Bits: 64

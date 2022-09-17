@@ -54,7 +54,12 @@ public class LevelManager : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                CreatePrefab(levelTexture.GetPixel(x, y), new Vector3(x, 0f, y), offset, levelParent.transform);
+                GameObject prefab = CreatePrefab(levelTexture.GetPixel(x, y), new Vector3(x, 0f, y), offset, levelParent.transform);
+
+                if (prefab.CompareTag("Player"))
+                {
+                    prefab.transform.parent = null;
+                }
             }
         }
     }

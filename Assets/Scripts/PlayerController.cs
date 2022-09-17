@@ -5,6 +5,14 @@ using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+
+    [Header("Player Tween Values")] [Space(10)]
+    [Header("Punch Scale On Stop")]
+    [SerializeField] private Vector3 punchScale;
+    [SerializeField] private float punchScaleDuration;
+    [SerializeField] private int punchScaleVibrato;
+    [SerializeField] private float punchScaleElasticity;
+
     [SerializeField] private LayerMask tilesLayer;
     [SerializeField] private TextMeshPro numberText;
 
@@ -66,6 +74,15 @@ public class PlayerController : MonoBehaviour
                 duration = CalculateMovementDuration(transform.position, targetPosition);
                 transform.DOMove(targetPosition, duration).SetEase(Ease.Linear).OnComplete(() =>
                 {
+                    if (direction == Vector3.left || direction == Vector3.right)
+                    {
+                        transform.DOPunchScale(new Vector3(-punchScale.x, punchScale.y, punchScale.z), punchScaleDuration, punchScaleVibrato, punchScaleElasticity);
+                    }
+                    else if (direction == Vector3.forward || direction == Vector3.back)
+                    {
+                        transform.DOPunchScale(new Vector3(punchScale.x, punchScale.y, -punchScale.z), punchScaleDuration, punchScaleVibrato, punchScaleElasticity);
+                    }
+
                     if (merge)
                     {
                         EventManager.CallMergeNumbersEvent();
