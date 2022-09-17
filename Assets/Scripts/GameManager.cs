@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        Application.targetFrameRate = 60;
     }
 
     public enum GameStatus
