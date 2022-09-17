@@ -59,32 +59,49 @@ public class LevelManager : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                GameObject prefab = CreatePrefab(levelTexture.GetPixel(x, y), new Vector3(x, 0f, y), offset, levelParent.transform);
+                Color pixelColor = levelTexture.GetPixel(x, y);
+
+                if (CompareColors(pixelColor, Color.black))
+                {
+                    continue;
+                }
+
+                GameObject prefab = CreatePrefab(pixelColor, new Vector3(x, 0f, y), offset);
 
                 if (prefab.CompareTag("Player"))
                 {
                     prefab.transform.parent = null;
                 }
+                else if (prefab.CompareTag("WallTile"))
+                {
+                    prefab.transform.parent = levelParent.transform.Find("Walls");
+                }
+                else if (prefab.CompareTag("NumberCube"))
+                {
+                    prefab.transform.parent = levelParent.transform.Find("NumberCubes");
+                }
             }
         }
     }
 
-    private GameObject CreatePrefab(Color color, Vector3 position, Vector3 offset, Transform parentObject)
+    private GameObject CreatePrefab(Color color, Vector3 position, Vector3 offset)
     {
         GameObject prefab = GetPrefabFromColor(color);
 
-        return Instantiate(prefab, position - offset, Quaternion.identity, parentObject);
+        return Instantiate(prefab, position - offset, Quaternion.identity);
     }
 
     private GameObject GetPrefabFromColor(Color color)
     {
-        ColorPrefabPair pair = colorPrefabPairs.pairs.Find(x =>
-        {
-            return x.color.r == color.r
-                && x.color.g == color.g
-                && x.color.b == color.b;
-        });
+        ColorPrefabPair pair = colorPrefabPairs.pairs.Find(x => CompareColors(x.color, color));
 
         return pair.prefab;
+    }
+
+    private bool CompareColors(Color color1, Color color2)
+    {
+        return color1.r == color2.r
+            && color1.g == color2.g
+            && color1.b == color2.b;
     }
 }
