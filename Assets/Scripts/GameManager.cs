@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public int currentLevelIndex = 0;
-    [HideInInspector] public GameStatus currentGameStatus = GameStatus.Playing;
+    public int CurrentLevelIndex { get; private set; }
+    public GameStatus CurrentGameStatus { get; set; }
 
     public static GameManager Instance;
 

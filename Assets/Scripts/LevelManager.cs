@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        currentLevelIndex = GameManager.Instance.currentLevelIndex;
+        currentLevelIndex = GameManager.Instance.CurrentLevelIndex;
         currentLevel = levels[currentLevelIndex];
         initialPlayerNumber = currentLevel.initialPlayerNumber;
 

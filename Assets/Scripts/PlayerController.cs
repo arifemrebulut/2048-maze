@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move(Vector3 direction)
     {
-        if (canMove)
+        if (canMove && GameManager.Instance.CurrentGameStatus == GameManager.GameStatus.Playing)
         {
             canMove = false;
             Vector3 targetPosition = transform.position;
@@ -110,6 +110,14 @@ public class PlayerController : MonoBehaviour
     private void MergeNumbers()
     {
         currentPlayerNumber *= 2;
+
+        if (currentPlayerNumber == 2048)
+        {
+            GameManager.Instance.CurrentGameStatus = GameManager.GameStatus.Success;
+            canMove = false;
+
+            EventManager.CallLevelSuccessEvent();
+        }
 
         numberText.text = currentPlayerNumber.ToString();
     }
