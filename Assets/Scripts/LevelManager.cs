@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     [Space(10)]
     [SerializeField] private GameObject levelParent;
+    [SerializeField] private GameObject levelBasePrefab;    
 
     private int currentLevelIndex;
     private LevelData currentLevel;
@@ -49,6 +50,10 @@ public class LevelManager : MonoBehaviour
 
         // Offset for centering the level on the x axis
         Vector3 offset = new Vector3(width / 2f, 0f, height / 2f) - new Vector3(0.5f, 0f, 0.5f);
+
+        // Level Base
+        GameObject levelBase = Instantiate(levelBasePrefab, levelParent.transform);
+        levelBase.transform.localScale = new Vector3(width, levelBase.transform.localScale.y, height);
 
         for (int x = 0; x < width; x++)
         {
