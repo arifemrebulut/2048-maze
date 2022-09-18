@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
                         targetPosition = CalculateTargetPosisition(hit, direction);
                     }
                 }
-
+                
                 duration = CalculateMovementDuration(transform.position, targetPosition);
                 transform.DOMove(targetPosition, duration).SetEase(Ease.Linear)
                     .OnComplete(() =>
