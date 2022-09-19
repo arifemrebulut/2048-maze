@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour
     private Vector2 mouseDownPosition;
     private float currentSwipeDistance;
 
+    private bool canSwipe = true;
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -18,10 +20,17 @@ public class InputManager : MonoBehaviour
         {
             currentSwipeDistance = Vector3.Distance(mouseDownPosition, Input.mousePosition);
 
-            if (currentSwipeDistance >= minSwipeDelta)
+            if (PlayerController.canMove && canSwipe && currentSwipeDistance >= minSwipeDelta)
             {
+                canSwipe = false;
+
                 DetectSwipe(mouseDownPosition, Input.mousePosition);
             }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            canSwipe = true;
         }
     }
 

@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public int currentPlayerNumber;
 
-    private bool canMove = true;
+    public static bool canMove { get; private set; } = true;
     private const int MAX_RAY_DISTANCE = 50;
 
     private void OnEnable()
