@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private float minSwipeDelta;
 
     private Vector2 mouseDownPosition;
-    private Vector2 mouseUpPosition;
+    private float currentSwipeDistance;
 
     private void Update()
     {
@@ -13,11 +13,15 @@ public class InputManager : MonoBehaviour
         {
             mouseDownPosition = Input.mousePosition;
         }
-        else if (Input.GetMouseButtonUp(0))
+        
+        if (Input.GetMouseButton(0))
         {
-            mouseUpPosition = Input.mousePosition;
+            currentSwipeDistance = Vector3.Distance(mouseDownPosition, Input.mousePosition);
 
-            DetectSwipe(mouseDownPosition, mouseUpPosition);
+            if (currentSwipeDistance >= minSwipeDelta)
+            {
+                DetectSwipe(mouseDownPosition, Input.mousePosition);
+            }
         }
     }
 
