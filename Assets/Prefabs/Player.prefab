@@ -321,9 +321,9 @@ MonoBehaviour:
   punchScaleDuration: 0.25
   punchScaleVibrato: 4
   punchScaleElasticity: 1
-  yPositionIncrease: 4
-  yPositionIncreaseDuration: 0.7
-  yRotationAngle: 360
+  targetPosition: {x: 0, y: 8.6, z: 0}
+  positionDuration: 0.8
+  yRotationAmount: 360
   yRotationDuration: 0.7
   mergeParticle: {fileID: 4538652256401143351}
   tilesLayer:

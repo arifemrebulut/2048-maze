@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum UIControllerType
@@ -77,5 +78,10 @@ public class CanvasManager : MonoBehaviour
     public void CallFail()
     {
         EventManager.CallLevelFailEvent();
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Level Success Animation Sequence")]
     [SerializeField] private Vector3 targetPosition;
     [SerializeField] private float positionDuration;
-    [SerializeField] private float yRotationAngle;
+    [SerializeField] private float yRotationAmount;
     [SerializeField] private float yRotationDuration;
 
     [Header("Level Fail Animation Sequence")]
@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(transform.DOMove(targetPosition, positionDuration))
-                .Append(transform.DORotate(new Vector3(0f, yRotationAngle, 0f), yRotationDuration, RotateMode.LocalAxisAdd));
+                .Join(transform.DORotate(new Vector3(-30, 0f, 0f), 0.7f))
+                .Append(transform.DORotate(new Vector3(0f, yRotationAmount, 0f), yRotationDuration, RotateMode.LocalAxisAdd));
     }
 }
