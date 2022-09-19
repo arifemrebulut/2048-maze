@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum UIControllerType
 {
@@ -65,5 +67,15 @@ public class CanvasManager : MonoBehaviour
             lastActiveCanvas = desiredCanvas;
         }
         else { Debug.LogWarning("The desired canvas was not found!"); }
+    }
+
+    public void CallSuccess()
+    {
+        EventManager.CallLevelSuccessEvent();
+    }
+
+    public void CallFail()
+    {
+        EventManager.CallLevelFailEvent();
     }
 }

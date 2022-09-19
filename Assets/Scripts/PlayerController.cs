@@ -12,6 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int punchScaleVibrato;
     [SerializeField] private float punchScaleElasticity;
 
+    [Header("Level Success Animation Sequence")]
+    [SerializeField] private Vector3 targetPosition;
+    [SerializeField] private float positionDuration;
+    [SerializeField] private float yRotationAngle;
+    [SerializeField] private float yRotationDuration;
+
+    [Header("Level Fail Animation Sequence")]
+
     [Header("Particles On Merge")]
     [SerializeField] private ParticleSystem mergeParticle;
 
@@ -27,12 +35,14 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.MoveEvent += Move;
         EventManager.MergeNumbersEvent += MergeNumbers;
+        EventManager.LevelSuccesEvent += LevelSuccessAnimationSequence;
     }
 
     private void OnDisable()
     {
         EventManager.MoveEvent -= Move;
         EventManager.MergeNumbersEvent -= MergeNumbers;
+        EventManager.LevelSuccesEvent -= LevelSuccessAnimationSequence;
     }
 
     private void Start()
@@ -149,5 +159,13 @@ public class PlayerController : MonoBehaviour
         {
             transform.DOPunchScale(new Vector3(punchScale.x, punchScale.y, -punchScale.z), punchScaleDuration, punchScaleVibrato, punchScaleElasticity);
         }
+    }
+
+    private void LevelSuccessAnimationSequence()
+    {
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.Append(transform.DOMove(targetPosition, positionDuration))
+                .Append(transform.DORotate(new Vector3(0f, yRotationAngle, 0f), yRotationDuration, RotateMode.LocalAxisAdd));
     }
 }
