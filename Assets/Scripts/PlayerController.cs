@@ -20,8 +20,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Level Fail Animation Sequence")]
 
-    [Header("Particles On Merge")]
+    [Header("Particles")]
     [SerializeField] private ParticleSystem mergeParticle;
+    [SerializeField] private ParticleSystem confettiParticle;
+    [SerializeField] private ParticleSystem glowParticle;
 
     [SerializeField] private LayerMask tilesLayer;
     [SerializeField] private TextMeshPro numberText;
@@ -167,6 +169,11 @@ public class PlayerController : MonoBehaviour
 
         sequence.Append(transform.DOMove(targetPosition, positionDuration))
                 .Join(transform.DORotate(new Vector3(-30, 0f, 0f), 0.7f))
-                .Append(transform.DORotate(new Vector3(0f, yRotationAmount, 0f), yRotationDuration, RotateMode.LocalAxisAdd));
+                .Append(transform.DORotate(new Vector3(0f, yRotationAmount, 0f), yRotationDuration, RotateMode.LocalAxisAdd)
+                    .OnStart(() =>
+                    {
+                        glowParticle.Play();
+                        confettiParticle.Play();
+                    }));
     }
 }
