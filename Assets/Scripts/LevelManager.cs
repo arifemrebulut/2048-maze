@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
 
         // Level Base
         GameObject levelBase = Instantiate(levelBasePrefab, levelParent.transform);
-        levelBase.transform.localScale = new Vector3(width, levelBase.transform.localScale.y, height);
+        //uuulevelBase.transform.localScale = new Vector3(width, levelBase.transform.localScale.y, height);
 
         for (int x = 0; x < width; x++)
         {
