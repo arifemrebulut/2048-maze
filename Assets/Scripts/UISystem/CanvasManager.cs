@@ -9,8 +9,6 @@ using UnityEngine.UI;
 public enum UIControllerType
 {
     GameUI,
-    SuccessUI,
-    FailUI
 }
 
 public class CanvasManager : MonoBehaviour
@@ -21,15 +19,11 @@ public class CanvasManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.LevelPlaying += GameUI;
-        EventManager.LevelSuccesEvent += SuccessUI;
-        EventManager.LevelFailEvent += FailUI;
     }
 
     private void OnDisable()
     {
         EventManager.LevelPlaying -= GameUI;
-        EventManager.LevelSuccesEvent -= SuccessUI;
-        EventManager.LevelFailEvent -= FailUI;
     }
 
     private void Awake()
@@ -42,16 +36,6 @@ public class CanvasManager : MonoBehaviour
     private void GameUI()
     {
         SwitchCanvas(UIControllerType.GameUI);
-    }
-
-    private void SuccessUI()
-    {
-        //SwitchCanvas(UIControllerType.SuccessUI);
-    }
-
-    private void FailUI()
-    {
-        SwitchCanvas(UIControllerType.FailUI);
     }
 
     private void SwitchCanvas(UIControllerType _type)
