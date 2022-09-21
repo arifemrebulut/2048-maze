@@ -165,15 +165,15 @@ public class PlayerController : MonoBehaviour
 
     private void LevelSuccessAnimationSequence()
     {
-        Sequence sequence = DOTween.Sequence();
+        //Sequence sequence = DOTween.Sequence();
 
-        sequence.Append(transform.DOMove(targetPosition, positionDuration))
-                .Join(transform.DORotate(new Vector3(-30, 0f, 0f), 0.7f))
-                .Append(transform.DORotate(new Vector3(0f, yRotationAmount, 0f), yRotationDuration, RotateMode.LocalAxisAdd)
-                    .OnStart(() =>
-                    {
-                        glowParticle.Play();
-                        confettiParticle.Play();
-                    }));
+        //sequence.Append(transform.DOMove(targetPosition, positionDuration))
+        //        .Join(transform.DORotate(new Vector3(-30, 0f, 0f), 0.7f))
+        //        .Append(transform.DORotate(new Vector3(0f, yRotationAmount, 0f), yRotationDuration, RotateMode.LocalAxisAdd)
+        //            .OnStart(() =>
+        //            {
+        //                glowParticle.Play();
+        //                confettiParticle.Play();
+        //            }));
     }
 }

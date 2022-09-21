@@ -46,7 +46,7 @@ public class CanvasManager : MonoBehaviour
 
     private void SuccessUI()
     {
-        SwitchCanvas(UIControllerType.SuccessUI);
+        //SwitchCanvas(UIControllerType.SuccessUI);
     }
 
     private void FailUI()
