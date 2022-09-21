@@ -7,9 +7,19 @@ public class GameUI : MonoBehaviour, IUIController
 
     [SerializeField] private TextMeshProUGUI levelText;
 
+    private void OnEnable()
+    {
+        EventManager.LevelSuccesEvent += UpdateLevelText;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.LevelSuccesEvent -= UpdateLevelText;
+    }
+
     private void Start()
     {
-        levelText.text = (GameManager.Instance.CurrentLevelIndex + 1).ToString();    
+        UpdateLevelText();
     }
 
     public void Close()
@@ -20,5 +30,10 @@ public class GameUI : MonoBehaviour, IUIController
     public void Open()
     {
         gameObject.SetActive(true);
+    }
+
+    private void UpdateLevelText()
+    {
+        levelText.text = (GameManager.Instance.CurrentLevelIndex + 1).ToString();
     }
 }
