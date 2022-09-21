@@ -523,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &337811811
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1514,8 +1514,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.6087609, y: -0, z: -0, w: 0.79335374}
-  m_LocalPosition: {x: 0, y: 21.44, z: -5.96}
+  m_LocalRotation: {x: -0.002873059, y: -0, z: -0, w: 0.9999959}
+  m_LocalPosition: {x: 0, y: 8.98, z: -5.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1585,7 +1585,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1385119907}
+  - {fileID: 1336102724}
   m_Father: {fileID: 1533449020}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1607,6 +1607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <UIControllerType>k__BackingField: 0
+  levelText: {fileID: 1336102725}
 --- !u!1 &980395003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1096021968
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1961,7 +1962,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1385119906
+--- !u!1 &1336102723
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1969,23 +1970,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1385119907}
-  - component: {fileID: 1385119909}
-  - component: {fileID: 1385119908}
+  - component: {fileID: 1336102724}
+  - component: {fileID: 1336102726}
+  - component: {fileID: 1336102725}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1385119907
+--- !u!224 &1336102724
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385119906}
+  m_GameObject: {fileID: 1336102723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1999,13 +2000,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2137}
   m_SizeDelta: {x: 1361.889, y: 292.817}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1385119908
+--- !u!114 &1336102725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385119906}
+  m_GameObject: {fileID: 1336102723}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -2019,7 +2020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game UI
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b28d54d8985d5ba43899e726868ec7b1, type: 2}
   m_sharedMaterial: {fileID: -7281640296561118543, guid: b28d54d8985d5ba43899e726868ec7b1, type: 2}
@@ -2088,13 +2089,13 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1385119909
+--- !u!222 &1336102726
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385119906}
+  m_GameObject: {fileID: 1336102723}
   m_CullTransparentMesh: 1
 --- !u!1 &1449891805
 GameObject:
@@ -2591,7 +2592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1769312917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2776,7 +2777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2094465567
 RectTransform:
   m_ObjectHideFlags: 0
