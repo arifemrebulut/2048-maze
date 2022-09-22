@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
@@ -19,13 +20,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float moveDuration;
 
     private GameObject currentLevel;
-    private GameObject nextLevel;
-    private GameObject oldLevel;
-
     private LevelData currentLevelData;
-    private LevelData nextLevelData;
     private int currentLevelIndex;
-    private int nextLevelIndex;
+
+    private bool onStart = true;
 
     public int initialPlayerNumber { get; private set; }
 
@@ -46,12 +44,12 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.LevelSuccesEvent += MoveLevels;
+        EventManager.LevelSuccesEvent += MoveOldLevelToDestroyPoint;
     }
 
     private void OnDisable()
     {
-        EventManager.LevelSuccesEvent -= MoveLevels;
+        EventManager.LevelSuccesEvent -= MoveOldLevelToDestroyPoint;
     }
 
     private void Start()
@@ -63,16 +61,12 @@ public class LevelManager : MonoBehaviour
     {
         GetLevelInformations();
         CreateCurrentLevel();
-        CreateNextLevel();
     }
 
     private void GetLevelInformations()
     {
         currentLevelIndex = GameManager.Instance.CurrentLevelIndex;
-        nextLevelIndex = currentLevelIndex + 1;
-
         currentLevelData = levels[currentLevelIndex];
-        nextLevelData = levels[nextLevelIndex];
 
         initialPlayerNumber = currentLevelData.initialPlayerNumber;
     }
@@ -87,8 +81,10 @@ public class LevelManager : MonoBehaviour
         // Offset for centering the level on the x axis
         Vector3 offset = new Vector3(width / 2f, 0f, height / 2f) - new Vector3(0.5f, 0f, 0.5f);
 
-        currentLevel = Instantiate(levelBasePrefab, levelsParent.transform);
-        currentLevel.name = "CurrentLevel";
+        Vector3 instantiatePosition = onStart ? Vector3.zero : nextLevelInstantiatePoint.position;
+        onStart = false;
+
+        currentLevel = Instantiate(levelBasePrefab, instantiatePosition, Quaternion.identity, levelsParent.transform);
 
         for (int x = 0; x < width; x++)
         {
@@ -101,92 +97,35 @@ public class LevelManager : MonoBehaviour
                     continue;
                 }
 
-                GameObject prefab = CreatePrefab(pixelColor, new Vector3(x, 0f, y), offset);
+                GameObject prefab = GetPrefabFromColor(pixelColor);
+                GameObject tile = Instantiate(prefab);
 
-                if (prefab.CompareTag("Player"))
-                {
-                    prefab.transform.parent = currentLevel.transform;
-                }
-                else if (prefab.CompareTag("WallTile"))
-                {
-                    prefab.transform.parent = currentLevel.transform.Find("Walls");
-                }
-                else if (prefab.CompareTag("NumberCube"))
-                {
-                    prefab.transform.parent = currentLevel.transform.Find("NumberCubes");
-                }
+                tile.transform.parent = currentLevel.transform;
+                tile.transform.localPosition = new Vector3(x, 0f, y) - offset;
             }
         }
     }
 
-    private void CreateNextLevel()
-    {
-        Texture2D levelTexture = nextLevelData.levelTexture;
-
-        float width = levelTexture.width;
-        float height = levelTexture.height;
-
-        // Offset for centering the level on the x axis
-        Vector3 offset = new Vector3(width / 2f, 0f, height / 2f) - new Vector3(0.5f, 0f, 0.5f);
-
-        nextLevel = Instantiate(levelBasePrefab, nextLevelInstantiatePoint.position, Quaternion.identity, levelsParent.transform);
-        nextLevel.name = "NextLevel";
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                Color pixelColor = levelTexture.GetPixel(x, y);
-
-                if (CompareColors(pixelColor, Color.black))
-                {
-                    continue;
-                }
-
-                GameObject prefab = CreatePrefab(pixelColor, nextLevelInstantiatePoint.position + new Vector3(x, 0f, y), offset);
-
-                if (prefab.CompareTag("Player"))
-                {
-                    prefab.transform.parent = nextLevel.transform;
-                }
-                else if (prefab.CompareTag("WallTile"))
-                {
-                    prefab.transform.parent = nextLevel.transform.Find("Walls");
-                }
-                else if (prefab.CompareTag("NumberCube"))
-                {
-                    prefab.transform.parent = nextLevel.transform.Find("NumberCubes");
-                }
-            }
-        }
-    }
-
-    private void MoveLevels()
+    private void MoveOldLevelToDestroyPoint()
     {
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(currentLevel.transform.DOMove(levelDestroyPoint.position, moveDuration)
-                    .SetEase(Ease.Linear))
-                .Join(nextLevel.transform.DOMove(Vector3.zero, moveDuration)
-                    .SetEase(Ease.Linear))
-                .OnComplete(() =>
-                {
-                    oldLevel = currentLevel;
-                    currentLevel = nextLevel;
+                    .SetEase(Ease.Linear)
+                    .OnComplete(() =>
+                    {
+                        Destroy(currentLevel);
 
-                    GetLevelInformations();
-
-                    CreateNextLevel();
-
-                    Destroy(oldLevel);
-                });
+                        GetLevelInformations();
+                        CreateCurrentLevel();
+                        MoveNewLevelToCenter();
+                    }));
     }
 
-    private GameObject CreatePrefab(Color color, Vector3 position, Vector3 offset)
+    private void MoveNewLevelToCenter()
     {
-        GameObject prefab = GetPrefabFromColor(color);
-
-        return Instantiate(prefab, position - offset, Quaternion.identity);
+        currentLevel.transform.DOMove(Vector3.zero, moveDuration)
+            .SetEase(Ease.Linear);
     }
 
     private GameObject GetPrefabFromColor(Color color)
