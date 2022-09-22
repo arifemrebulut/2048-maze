@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float oldLevelSlideDuration;
     [SerializeField] private float newLevelSlideDuration;
 
+    [SerializeField] private ParticleSystem levelSuccessConfetti;
+
     private GameObject currentLevel;
     private LevelData currentLevelData;
     private int currentLevelIndex;
@@ -46,11 +48,13 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.LevelSuccesEvent += MoveOldLevelToDestroyPoint;
+        EventManager.LevelSuccesEvent += LevelSuccessParticles;
     }
 
     private void OnDisable()
     {
         EventManager.LevelSuccesEvent -= MoveOldLevelToDestroyPoint;
+        EventManager.LevelSuccesEvent -= LevelSuccessParticles;
     }
 
     private void Start()
@@ -112,6 +116,7 @@ public class LevelManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(currentLevel.transform.DOMove(levelDestroyPoint.position, oldLevelSlideDuration)
+                    .SetDelay(0.5f)
                     .SetEase(Ease.InCirc)
                     .OnComplete(() =>
                     {
@@ -141,5 +146,10 @@ public class LevelManager : MonoBehaviour
         return color1.r == color2.r
             && color1.g == color2.g
             && color1.b == color2.b;
+    }
+
+    private void LevelSuccessParticles()
+    {
+        levelSuccessConfetti.Play();
     }
 }
