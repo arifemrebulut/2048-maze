@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int CurrentLevelIndex { get; private set; }
+    public int CurrentLevelIndex { get; private set; } = 0;
     public GameStatus CurrentGameStatus { get; set; }
 
     public static GameManager Instance;

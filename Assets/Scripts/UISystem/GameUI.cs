@@ -7,19 +7,22 @@ public class GameUI : MonoBehaviour, IUIController
 
     [SerializeField] private TextMeshProUGUI levelText;
 
+    private int levelIndex;
+
+    private void Start()
+    {
+        levelIndex = (GameManager.Instance.CurrentLevelIndex + 1);
+        levelText.text = "LEVEL " + levelIndex.ToString();
+    }
+
     private void OnEnable()
     {
-        EventManager.LevelSuccesEvent += UpdateLevelText;
+        EventManager.LevelSuccesEvent += IncreaseLevelNumber;
     }
 
     private void OnDisable()
     {
-        EventManager.LevelSuccesEvent -= UpdateLevelText;
-    }
-
-    private void Start()
-    {
-        UpdateLevelText();
+        EventManager.LevelSuccesEvent -= IncreaseLevelNumber;
     }
 
     public void Close()
@@ -32,8 +35,9 @@ public class GameUI : MonoBehaviour, IUIController
         gameObject.SetActive(true);
     }
 
-    private void UpdateLevelText()
+    private void IncreaseLevelNumber()
     {
-        levelText.text = "LEVEL " + (GameManager.Instance.CurrentLevelIndex + 1).ToString();
+        levelIndex++;
+        levelText.text = "LEVEL " + levelIndex.ToString();
     }
 }
