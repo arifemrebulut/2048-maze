@@ -352,7 +352,8 @@ MonoBehaviour:
   levelBasePrefab: {fileID: 546593753614098565, guid: 19294428ce35f254fb56b3fdf1fc54ac, type: 3}
   nextLevelInstantiatePoint: {fileID: 820352262}
   levelDestroyPoint: {fileID: 820352261}
-  moveDuration: 0.2
+  oldLevelSlideDuration: 0.25
+  newLevelSlideDuration: 0.4
 --- !u!1 &604123958
 GameObject:
   m_ObjectHideFlags: 0

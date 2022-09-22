@@ -16,8 +16,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform nextLevelInstantiatePoint;
     [SerializeField] private Transform levelDestroyPoint;
 
-    [Header("Move Level Tween")]
-    [SerializeField] private float moveDuration;
+    [Header("Level Success Slide Tween")]
+    [SerializeField] private float oldLevelSlideDuration;
+    [SerializeField] private float newLevelSlideDuration;
 
     private GameObject currentLevel;
     private LevelData currentLevelData;
@@ -110,8 +111,8 @@ public class LevelManager : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
 
-        sequence.Append(currentLevel.transform.DOMove(levelDestroyPoint.position, moveDuration)
-                    .SetEase(Ease.Linear)
+        sequence.Append(currentLevel.transform.DOMove(levelDestroyPoint.position, oldLevelSlideDuration)
+                    .SetEase(Ease.InCirc)
                     .OnComplete(() =>
                     {
                         Destroy(currentLevel);
@@ -124,8 +125,8 @@ public class LevelManager : MonoBehaviour
 
     private void MoveNewLevelToCenter()
     {
-        currentLevel.transform.DOMove(Vector3.zero, moveDuration)
-            .SetEase(Ease.Linear);
+        currentLevel.transform.DOMove(Vector3.zero, newLevelSlideDuration)
+            .SetEase(Ease.OutCirc);
     }
 
     private GameObject GetPrefabFromColor(Color color)
