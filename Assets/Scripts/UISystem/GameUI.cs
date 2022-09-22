@@ -34,6 +34,6 @@ public class GameUI : MonoBehaviour, IUIController
 
     private void UpdateLevelText()
     {
-        levelText.text = (GameManager.Instance.CurrentLevelIndex + 1).ToString();
+        levelText.text = "LEVEL " + (GameManager.Instance.CurrentLevelIndex + 1).ToString();
     }
 }
