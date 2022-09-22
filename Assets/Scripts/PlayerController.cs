@@ -12,18 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int punchScaleVibrato;
     [SerializeField] private float punchScaleElasticity;
 
-    [Header("Level Success Animation Sequence")]
-    [SerializeField] private Vector3 targetPosition;
-    [SerializeField] private float positionDuration;
-    [SerializeField] private float yRotationAmount;
-    [SerializeField] private float yRotationDuration;
-
-    [Header("Level Fail Animation Sequence")]
-
     [Header("Particles")]
     [SerializeField] private ParticleSystem mergeParticle;
-    [SerializeField] private ParticleSystem confettiParticle;
-    [SerializeField] private ParticleSystem glowParticle;
 
     [SerializeField] private LayerMask tilesLayer;
     [SerializeField] private TextMeshPro numberText;
@@ -37,14 +27,12 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.MoveEvent += Move;
         EventManager.MergeNumbersEvent += MergeNumbers;
-        EventManager.LevelSuccesEvent += LevelSuccessAnimationSequence;
     }
 
     private void OnDisable()
     {
         EventManager.MoveEvent -= Move;
         EventManager.MergeNumbersEvent -= MergeNumbers;
-        EventManager.LevelSuccesEvent -= LevelSuccessAnimationSequence;
     }
 
     private void Start()
@@ -55,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move(Vector3 direction)
     {
-        if (canMove && GameManager.Instance.CurrentGameStatus == GameManager.GameStatus.Playing)
+        if (canMove)
         {
             canMove = false;
             Vector3 targetPosition = transform.position;
@@ -140,7 +128,6 @@ public class PlayerController : MonoBehaviour
 
         if (currentPlayerNumber == 2048)
         {
-            GameManager.Instance.CurrentGameStatus = GameManager.GameStatus.Success;
             canMove = false;
 
             EventManager.CallLevelSuccessEvent();
@@ -161,19 +148,5 @@ public class PlayerController : MonoBehaviour
         {
             transform.DOPunchScale(new Vector3(punchScale.x, punchScale.y, -punchScale.z), punchScaleDuration, punchScaleVibrato, punchScaleElasticity);
         }
-    }
-
-    private void LevelSuccessAnimationSequence()
-    {
-        //Sequence sequence = DOTween.Sequence();
-
-        //sequence.Append(transform.DOMove(targetPosition, positionDuration))
-        //        .Join(transform.DORotate(new Vector3(-30, 0f, 0f), 0.7f))
-        //        .Append(transform.DORotate(new Vector3(0f, yRotationAmount, 0f), yRotationDuration, RotateMode.LocalAxisAdd)
-        //            .OnStart(() =>
-        //            {
-        //                glowParticle.Play();
-        //                confettiParticle.Play();
-        //            }));
     }
 }
