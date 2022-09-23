@@ -97,11 +97,6 @@ public class LevelManager : MonoBehaviour
             {
                 Color pixelColor = levelTexture.GetPixel(x, y);
 
-                if (CompareColors(pixelColor, Color.black))
-                {
-                    continue;
-                }
-
                 GameObject prefab = GetPrefabFromColor(pixelColor);
                 GameObject tile = Instantiate(prefab);
 
