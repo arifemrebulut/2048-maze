@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [Space(10)]
     [SerializeField] private GameObject levelsParent;
     [SerializeField] private GameObject levelBasePrefab;
+    [SerializeField] private GameObject roadTilePrefab;
     [SerializeField] private Transform nextLevelInstantiatePoint;
     [SerializeField] private Transform levelDestroyPoint;
 
@@ -96,6 +97,16 @@ public class LevelManager : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 Color pixelColor = levelTexture.GetPixel(x, y);
+
+                if (!CompareColors(pixelColor, Color.white))
+                {
+                    GameObject roadTile = Instantiate(roadTilePrefab);
+
+                    roadTile.transform.parent = currentLevel.transform;
+                    roadTile.transform.localPosition = new Vector3(x, 0f, y) - offset;
+                }
+
+                if (CompareColors(pixelColor, Color.black)) continue;
 
                 GameObject prefab = GetPrefabFromColor(pixelColor);
                 GameObject tile = Instantiate(prefab);
