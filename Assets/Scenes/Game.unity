@@ -350,6 +350,7 @@ MonoBehaviour:
   colorPrefabPairs: {fileID: 11400000, guid: 3343782cd2c7c464d9bc2e1028adbf1e, type: 2}
   levelsParent: {fileID: 820352260}
   levelBasePrefab: {fileID: 546593753614098565, guid: 19294428ce35f254fb56b3fdf1fc54ac, type: 3}
+  roadTilePrefab: {fileID: 7276498328561995595, guid: 59c74d76621356944a62f7eaf07b2133, type: 3}
   nextLevelInstantiatePoint: {fileID: 820352262}
   levelDestroyPoint: {fileID: 820352261}
   oldLevelSlideDuration: 0.35
@@ -852,15 +853,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: 0, y: 17, z: -3}
+  m_LocalRotation: {x: 0.66593504, y: -0, z: -0, w: 0.7460098}
+  m_LocalPosition: {x: 0, y: 18.84, z: -2.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2004083742}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 83.508, y: 0, z: 0}
 --- !u!1 &976474180
 GameObject:
   m_ObjectHideFlags: 0

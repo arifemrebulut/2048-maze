@@ -92,6 +92,8 @@ public class LevelManager : MonoBehaviour
 
         currentLevel = Instantiate(levelBasePrefab, instantiatePosition, Quaternion.identity, levelsParent.transform);
 
+        int iterationNumber = 0;
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -107,6 +109,9 @@ public class LevelManager : MonoBehaviour
                 }
 
                 if (CompareColors(pixelColor, Color.black)) continue;
+
+                Debug.Log("Iteration : " + iterationNumber + " " + pixelColor);
+                iterationNumber++;
 
                 GameObject prefab = GetPrefabFromColor(pixelColor);
                 GameObject tile = Instantiate(prefab);
