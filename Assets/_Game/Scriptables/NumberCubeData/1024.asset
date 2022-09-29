@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 1024
   m_EditorClassIdentifier: 
   cubeNumber: 1024
-  cubeColor: {r: 0.61960787, g: 0.003921569, b: 0.25882354, a: 0}
+  cubeColor: {r: 0.61960787, g: 0.003921569, b: 0.25882354, a: 1}
