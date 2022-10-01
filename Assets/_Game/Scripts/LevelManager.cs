@@ -187,9 +187,9 @@ public class LevelManager : MonoBehaviour
 
     private bool CompareColors(Color color1, Color color2)
     {
-        return color1.r == color2.r
-            && color1.g == color2.g
-            && color1.b == color2.b;
+        return Mathf.Abs(color1.r - color2.r) <= 0.01f
+            && Mathf.Abs(color1.g - color2.g) <= 0.01f
+            && Math.Abs(color1.b - color2.b) <= 0.01f;
     }
 
     private void LevelSuccessParticles()
