@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             Vector3 targetPosition = transform.position;
 
-            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, MAX_RAY_DISTANCE, tilesLayer))
+            if (Physics.Raycast(transform.position + new Vector3(0f, 0.7f, 0f), direction, out RaycastHit hit, MAX_RAY_DISTANCE, tilesLayer))
             {   
                 float duration;
                 NumberCube hitCube = null;
@@ -56,13 +56,15 @@ public class PlayerController : MonoBehaviour
 
                 if (hit.transform.CompareTag("WallTile"))
                 {
+                    Debug.Log("WALL");
                     targetPosition = CalculateTargetPosisition(hit, direction);
                 }
                 else if (hit.transform.CompareTag("NumberCube"))
                 {
+                    Debug.Log("NUMBER CUBE");
                     hitCube = hit.transform.GetComponent<NumberCube>();
 
-                    if (hitCube.numberCubeData.cubeNumber == currentPlayerNumber)
+                    if (hitCube.number == currentPlayerNumber)
                     {
                         targetPosition = hitCube.transform.position;
                         merge = true;

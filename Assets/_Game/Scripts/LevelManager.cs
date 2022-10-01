@@ -1,22 +1,27 @@
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UIElements;
+using TMPro;
+using System;
 
 public class LevelManager : MonoBehaviour
 {
     [Header("Level Scriptables")]
     [SerializeField] private LevelData[] levels;
 
-    [Header("Color Prefab Pairs")]
-    [SerializeField] private ColorPrefabPairs colorPrefabPairs;
+    [SerializeField] private ColorNumberPairs colorNumberPairs;
 
-    [Space(10)]
+    [Header("Level Prefabs")] [Space(10)]
     [SerializeField] private GameObject levelsParent;
     [SerializeField] private GameObject levelBasePrefab;
-    [SerializeField] private GameObject roadTilePrefab;
     [SerializeField] private Transform nextLevelInstantiatePoint;
     [SerializeField] private Transform levelDestroyPoint;
 
+    [Header("Tile Prefabs")]
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject numberCubePrefab;
+    [SerializeField] private GameObject wallTilePrefab;
+    [SerializeField] private GameObject roadTilePrefab;
+      
     [Header("Level Success Slide Tween")]
     [SerializeField] private float oldLevelSlideDuration;
     [SerializeField] private float newLevelSlideDuration;
@@ -113,6 +118,15 @@ public class LevelManager : MonoBehaviour
 
                 tile.transform.parent = currentLevel.transform;
                 tile.transform.localPosition = new Vector3(x, 0f, y) - offset;
+
+                if (tile.CompareTag("NumberCube"))
+                {
+                    tile.GetComponent<NumberCube>().number = int.Parse(GetNumberFromColor(pixelColor));
+
+                    GameObject tileGraphic = tile.transform.GetChild(0).gameObject;
+                    tileGraphic.GetComponent<MeshRenderer>().material.color = pixelColor;
+                    tileGraphic.GetComponentInChildren<TextMeshPro>().text = GetNumberFromColor(pixelColor);
+                }
             }
         }
     }
@@ -134,17 +148,41 @@ public class LevelManager : MonoBehaviour
                     }));
     }
 
+    private GameObject GetPrefabFromColor(Color color)
+    {
+        GameObject prefab;
+
+        if (color == Color.red)
+        {
+            prefab = playerPrefab;
+        }
+        else if (color == Color.white)
+        {
+            prefab = wallTilePrefab;
+        }
+        else if (color == Color.black)
+        {
+            prefab = roadTilePrefab;
+        }
+        else
+        {
+            prefab = numberCubePrefab;
+        }
+
+        return prefab;
+    }
+
+    private string GetNumberFromColor(Color color)
+    {
+        ColorNumberPair pair = colorNumberPairs.pairs.Find(x => CompareColors(x.color, color));
+
+        return pair.number;
+    }
+
     private void MoveNewLevelToCenter()
     {
         currentLevel.transform.DOMove(Vector3.zero, newLevelSlideDuration)
             .SetEase(Ease.OutCirc);
-    }
-
-    private GameObject GetPrefabFromColor(Color color)
-    {
-        ColorPrefabPair pair = colorPrefabPairs.pairs.Find(x => CompareColors(x.color, color));
-
-        return pair.prefab;
     }
 
     private bool CompareColors(Color color1, Color color2)

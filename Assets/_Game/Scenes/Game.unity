@@ -347,12 +347,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 907736b99b27d3b42bb2e8ed6da0d778, type: 2}
   - {fileID: 11400000, guid: e39578be750ffee4c854247327b4841e, type: 2}
   - {fileID: 11400000, guid: 7785067c1ce4cd1429145e4a1cf59cc3, type: 2}
-  colorPrefabPairs: {fileID: 11400000, guid: 3343782cd2c7c464d9bc2e1028adbf1e, type: 2}
+  colorNumberPairs: {fileID: 11400000, guid: 3343782cd2c7c464d9bc2e1028adbf1e, type: 2}
   levelsParent: {fileID: 820352260}
   levelBasePrefab: {fileID: 546593753614098565, guid: 19294428ce35f254fb56b3fdf1fc54ac, type: 3}
-  roadTilePrefab: {fileID: 7276498328561995595, guid: 59c74d76621356944a62f7eaf07b2133, type: 3}
   nextLevelInstantiatePoint: {fileID: 820352262}
   levelDestroyPoint: {fileID: 820352261}
+  playerPrefab: {fileID: 4053185878360060271, guid: dfe3a7dcb7f7a584e8367d9e8e55b260, type: 3}
+  numberCubePrefab: {fileID: 7848193507420482270, guid: 43fadf1b5e61a7a45926254fb043cffe, type: 3}
+  wallTilePrefab: {fileID: 6970115088225149969, guid: b5cc39b2695165f438e01a3853cec940, type: 3}
+  roadTilePrefab: {fileID: 7276498328561995595, guid: 59c74d76621356944a62f7eaf07b2133, type: 3}
   oldLevelSlideDuration: 0.35
   newLevelSlideDuration: 0.5
   levelSuccessConfetti: {fileID: 2004083741}
