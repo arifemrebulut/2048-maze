@@ -3,6 +3,7 @@ using DG.Tweening;
 using TMPro;
 using System;
 using System.Linq;
+using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
@@ -235,6 +236,13 @@ public class LevelManager : MonoBehaviour
 
     private void RestartLevel()
     {
+        StartCoroutine(RestartLevelCoroutine());
+    }
+
+    private IEnumerator RestartLevelCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+
         Destroy(currentLevel);
 
         CreateCurrentLevel(true);
