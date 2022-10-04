@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.05
+  playerGraphic: {fileID: 3583041892078766304}
   punchScale: {x: 0.2, y: 0.05, z: 0.2}
   punchScaleDuration: 0.25
   punchScaleVibrato: 4
