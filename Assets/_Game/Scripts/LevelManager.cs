@@ -115,15 +115,15 @@ public class LevelManager : MonoBehaviour
             {   
                 Color pixelColor = levelTexture.GetPixel(x, y);
 
+                if (pixelColor.a == 0) continue;
+
                 if (!CompareColors(pixelColor, Color.white))
                 {
                     GameObject roadTile = Instantiate(roadTilePrefab);
 
                     roadTile.transform.parent = currentLevel.transform;
                     roadTile.transform.localPosition = new Vector3(x, 0f, y) - offset;
-                }
-
-                if (CompareColors(pixelColor, Color.black)) continue;
+                }      
 
                 GameObject prefab = GetPrefabFromColor(pixelColor);
                 GameObject tile = Instantiate(prefab);
