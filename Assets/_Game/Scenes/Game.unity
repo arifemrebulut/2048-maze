@@ -359,8 +359,8 @@ MonoBehaviour:
   levelBorderCube: {fileID: 5290094178444827526, guid: 981cb30fcb25be841b38bd485ea23b55, type: 3}
   cameraPositionLerpDuration: 0.2
   cameraRotationLerpDuration: 0.2
-  oldLevelSlideDuration: 2
-  newLevelSlideDuration: 2
+  oldLevelSlideDuration: 1
+  newLevelSlideDuration: 1
   levelSuccessConfetti: {fileID: 2004083741}
 --- !u!1 &604123958
 GameObject:

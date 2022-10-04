@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
         float width = levelTexture.width;
         float height = levelTexture.height;
 
-        // Offset for centering the level on the x axis
+        // Offset for centering the level
         Vector3 offset = new Vector3(width / 2f, 0f, height / 2f) - new Vector3(0.5f, 0f, 0.5f);
 
         Vector3 instantiatePosition = onStart ? Vector3.zero : nextLevelInstantiatePoint.position;
@@ -115,29 +115,36 @@ public class LevelManager : MonoBehaviour
             {   
                 Color pixelColor = levelTexture.GetPixel(x, y);
 
-                if (pixelColor.a == 0) continue;
-
-                if (!CompareColors(pixelColor, Color.white))
+                if (pixelColor.a == 0)
                 {
-                    GameObject roadTile = Instantiate(roadTilePrefab);
-
-                    roadTile.transform.parent = currentLevel.transform;
-                    roadTile.transform.localPosition = new Vector3(x, 0f, y) - offset;
-                }      
-
-                GameObject prefab = GetPrefabFromColor(pixelColor);
-                GameObject tile = Instantiate(prefab);
-
-                tile.transform.parent = currentLevel.transform;
-                tile.transform.localPosition = new Vector3(x, 0f, y) - offset;
-
-                if (tile.CompareTag("NumberCube"))
+                    GameObject borderCube = Instantiate(levelBorderCube);
+                    borderCube.transform.parent = currentLevel.transform;
+                    borderCube.transform.localPosition = new Vector3(x, 0f, y) - offset;
+                }
+                else
                 {
-                    tile.GetComponent<NumberCube>().number = int.Parse(GetNumberFromColor(pixelColor));
+                    if (!CompareColors(pixelColor, Color.white))
+                    {
+                        GameObject roadTile = Instantiate(roadTilePrefab);
 
-                    GameObject tileGraphic = tile.transform.GetChild(0).gameObject;
-                    tileGraphic.GetComponent<MeshRenderer>().material.color = pixelColor;
-                    tileGraphic.GetComponentInChildren<TextMeshPro>().text = GetNumberFromColor(pixelColor);
+                        roadTile.transform.parent = currentLevel.transform;
+                        roadTile.transform.localPosition = new Vector3(x, 0f, y) - offset;
+                    }
+
+                    GameObject prefab = GetPrefabFromColor(pixelColor);
+                    GameObject tile = Instantiate(prefab);
+
+                    tile.transform.parent = currentLevel.transform;
+                    tile.transform.localPosition = new Vector3(x, 0f, y) - offset;
+
+                    if (tile.CompareTag("NumberCube"))
+                    {
+                        tile.GetComponent<NumberCube>().number = int.Parse(GetNumberFromColor(pixelColor));
+
+                        GameObject tileGraphic = tile.transform.GetChild(0).gameObject;
+                        tileGraphic.GetComponent<MeshRenderer>().material.color = pixelColor;
+                        tileGraphic.GetComponentInChildren<TextMeshPro>().text = GetNumberFromColor(pixelColor);
+                    }
                 }
             }
         }
