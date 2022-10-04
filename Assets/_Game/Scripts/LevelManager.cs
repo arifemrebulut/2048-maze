@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using System;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -21,12 +22,19 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject numberCubePrefab;
     [SerializeField] private GameObject wallTilePrefab;
     [SerializeField] private GameObject roadTilePrefab;
-      
+    [SerializeField] private GameObject levelBorderCube;
+
+    [Header("Camera Tweens")]
+    [SerializeField] private float cameraPositionLerpDuration;
+    [SerializeField] private float cameraRotationLerpDuration;
+
     [Header("Level Success Slide Tween")]
     [SerializeField] private float oldLevelSlideDuration;
     [SerializeField] private float newLevelSlideDuration;
 
     [SerializeField] private ParticleSystem levelSuccessConfetti;
+
+    private Camera mainCamera;
 
     private GameObject currentLevel;
     private LevelData currentLevelData;
@@ -35,6 +43,7 @@ public class LevelManager : MonoBehaviour
     private bool onStart = true;
 
     public int initialPlayerNumber { get; private set; }
+    public int levelCount { get { return levels.Length; } }
 
     public static LevelManager Instance { get; private set; }
 
@@ -49,6 +58,8 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -66,6 +77,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SetupLevels();
+        SetCameraTransform(false);
     }
 
     private void SetupLevels()
@@ -100,7 +112,7 @@ public class LevelManager : MonoBehaviour
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
-            {
+            {   
                 Color pixelColor = levelTexture.GetPixel(x, y);
 
                 if (!CompareColors(pixelColor, Color.white))
@@ -144,6 +156,7 @@ public class LevelManager : MonoBehaviour
 
                         GetLevelInformations();
                         CreateCurrentLevel();
+                        SetCameraTransform();
                         MoveNewLevelToCenter();
                     }));
     }
@@ -183,6 +196,20 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel.transform.DOMove(Vector3.zero, newLevelSlideDuration)
             .SetEase(Ease.OutCirc);
+    }
+
+    private void SetCameraTransform(bool lerp = true)
+    {
+        if (lerp)
+        {
+            mainCamera.transform.DOMove(currentLevelData.cameraPosition, cameraPositionLerpDuration).SetEase(Ease.OutSine);
+            mainCamera.transform.DORotate(currentLevelData.cameraRotation, cameraRotationLerpDuration).SetEase(Ease.OutSine);
+        }
+        else
+        {
+            mainCamera.transform.position = currentLevelData.cameraPosition;
+            mainCamera.transform.localEulerAngles = currentLevelData.cameraRotation;
+        }
     }
 
     private bool CompareColors(Color color1, Color color2)

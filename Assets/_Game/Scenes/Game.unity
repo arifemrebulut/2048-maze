@@ -337,6 +337,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
+  - {fileID: 11400000, guid: 938b699d1166c694ca4665cd5259970c, type: 2}
+  - {fileID: 11400000, guid: be700eb7d62c18c48865f891414a706f, type: 2}
+  - {fileID: 11400000, guid: 7e795fa0beca4154c8c8d58752842728, type: 2}
+  - {fileID: 11400000, guid: 2f862abdba44aa74a92212c47c0e78e1, type: 2}
+  - {fileID: 11400000, guid: 41b93a3e46be4424db34ec06f500de5d, type: 2}
+  - {fileID: 11400000, guid: 5e6fcd0862e40bc428bad25527fc50e4, type: 2}
+  - {fileID: 11400000, guid: 980a4aad42168104d827d800c1d0bc20, type: 2}
+  - {fileID: 11400000, guid: 907736b99b27d3b42bb2e8ed6da0d778, type: 2}
+  - {fileID: 11400000, guid: e39578be750ffee4c854247327b4841e, type: 2}
   - {fileID: 11400000, guid: 7785067c1ce4cd1429145e4a1cf59cc3, type: 2}
   colorNumberPairs: {fileID: 11400000, guid: 3343782cd2c7c464d9bc2e1028adbf1e, type: 2}
   levelsParent: {fileID: 820352260}
@@ -347,8 +356,11 @@ MonoBehaviour:
   numberCubePrefab: {fileID: 7848193507420482270, guid: 43fadf1b5e61a7a45926254fb043cffe, type: 3}
   wallTilePrefab: {fileID: 6970115088225149969, guid: b5cc39b2695165f438e01a3853cec940, type: 3}
   roadTilePrefab: {fileID: 7276498328561995595, guid: 59c74d76621356944a62f7eaf07b2133, type: 3}
-  oldLevelSlideDuration: 0.35
-  newLevelSlideDuration: 0.5
+  levelBorderCube: {fileID: 5290094178444827526, guid: 981cb30fcb25be841b38bd485ea23b55, type: 3}
+  cameraPositionLerpDuration: 0.2
+  cameraRotationLerpDuration: 0.2
+  oldLevelSlideDuration: 2
+  newLevelSlideDuration: 2
   levelSuccessConfetti: {fileID: 2004083741}
 --- !u!1 &604123958
 GameObject:
@@ -700,11 +712,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 888156194509449408, guid: b3bb2052c983592439417b8f16b9ddd7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 7116179399827610293, guid: b3bb2052c983592439417b8f16b9ddd7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9025097603850047240, guid: b3bb2052c983592439417b8f16b9ddd7, type: 3}
       propertyPath: m_RootOrder
@@ -1102,7 +1114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1246718367
 RectTransform:
   m_ObjectHideFlags: 0

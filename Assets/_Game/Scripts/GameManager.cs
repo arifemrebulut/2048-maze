@@ -33,7 +33,14 @@ public class GameManager : MonoBehaviour
 
     private void IncreaseLevelIndex()
     {
-        CurrentLevelIndex++;
+        if (CurrentLevelIndex + 1 >= LevelManager.Instance.levelCount)
+        {
+            CurrentLevelIndex = 2;
+        }
+        else
+        {
+            CurrentLevelIndex++;
+        }
     }
 
     public enum GameStatus

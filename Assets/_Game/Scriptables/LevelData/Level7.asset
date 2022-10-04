@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8b38accc8592345ba802e92df32984, type: 3}
   m_Name: Level7
   m_EditorClassIdentifier: 
-  initialPlayerNumber: 4
   levelTexture: {fileID: 2800000, guid: 9df51ac51437cea4da912d94799aa2f3, type: 3}
+  initialPlayerNumber: 4
+  cameraPosition: {x: 0, y: 18.63, z: -2.95}
+  cameraRotation: {x: 81, y: 0, z: 0}
