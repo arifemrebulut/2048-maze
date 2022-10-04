@@ -56,12 +56,10 @@ public class PlayerController : MonoBehaviour
 
                 if (hit.transform.CompareTag("WallTile"))
                 {
-                    Debug.Log("WALL");
                     targetPosition = CalculateTargetPosisition(hit, direction);
                 }
                 else if (hit.transform.CompareTag("NumberCube"))
                 {
-                    Debug.Log("NUMBER CUBE");
                     hitCube = hit.transform.GetComponent<NumberCube>();
 
                     if (hitCube.number == currentPlayerNumber)

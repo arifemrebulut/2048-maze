@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level10
   m_EditorClassIdentifier: 
   initialPlayerNumber: 4
-  levelTexture: {fileID: 2800000, guid: 88a7a4ab8ebb9fc458b528d5be2ecc30, type: 3}
+  levelTexture: {fileID: 2800000, guid: 1c6b7e54d908eeb40a66ea022a2075fa, type: 3}
