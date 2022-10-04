@@ -66,12 +66,14 @@ public class LevelManager : MonoBehaviour
     {
         EventManager.LevelSuccesEvent += MoveOldLevelToDestroyPoint;
         EventManager.LevelSuccesEvent += LevelSuccessParticles;
+        EventManager.RestartLevelEvent += RestartLevel;
     }
 
     private void OnDisable()
     {
         EventManager.LevelSuccesEvent -= MoveOldLevelToDestroyPoint;
         EventManager.LevelSuccesEvent -= LevelSuccessParticles;
+        EventManager.RestartLevelEvent -= RestartLevel;
     }
 
     private void Start()
@@ -94,7 +96,7 @@ public class LevelManager : MonoBehaviour
         initialPlayerNumber = currentLevelData.initialPlayerNumber;
     }
 
-    private void CreateCurrentLevel()
+    private void CreateCurrentLevel(bool onPlace = false)
     {
         Texture2D levelTexture = currentLevelData.levelTexture;
 
@@ -104,7 +106,7 @@ public class LevelManager : MonoBehaviour
         // Offset for centering the level
         Vector3 offset = new Vector3(width / 2f, 0f, height / 2f) - new Vector3(0.5f, 0f, 0.5f);
 
-        Vector3 instantiatePosition = onStart ? Vector3.zero : nextLevelInstantiatePoint.position;
+        Vector3 instantiatePosition = onStart || onPlace ? Vector3.zero : nextLevelInstantiatePoint.position;
         onStart = false;
 
         currentLevel = Instantiate(levelBasePrefab, instantiatePosition, Quaternion.identity, levelsParent.transform);
@@ -229,5 +231,12 @@ public class LevelManager : MonoBehaviour
     private void LevelSuccessParticles()
     {
         levelSuccessConfetti.Play();
+    }
+
+    private void RestartLevel()
+    {
+        Destroy(currentLevel);
+
+        CreateCurrentLevel(true);
     }
 }

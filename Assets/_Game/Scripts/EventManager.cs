@@ -8,11 +8,13 @@ public static class EventManager
     public static Action LevelPlaying;
     public static Action LevelFailEvent;
     public static Action LevelSuccesEvent;
+    public static Action RestartLevelEvent;
 
     public static void CallGameStartEvent() => GameStartEvent?.Invoke();
     public static void CallLevelPlaying() => GameStartEvent?.Invoke();
     public static void CallLevelFailEvent() => LevelFailEvent?.Invoke();
     public static void CallLevelSuccessEvent() => LevelSuccesEvent?.Invoke();
+    public static void CallRestartLevelEvent() => RestartLevelEvent?.Invoke();
 
     // Player Events
     public static Action MergeNumbersEvent;

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTexture: {fileID: 2800000, guid: 88a7a4ab8ebb9fc458b528d5be2ecc30, type: 3}
   initialPlayerNumber: 256
-  cameraPosition: {x: 0, y: 10, z: -1.38}
+  cameraPosition: {x: 0, y: 12.1, z: -1.64}
   cameraRotation: {x: 83, y: 0, z: 0}

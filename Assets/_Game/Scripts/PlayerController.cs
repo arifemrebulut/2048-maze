@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
 
+    [SerializeField] private GameObject playerGraphic;
+
     [Header("Punch Scale Tween On Stop")]
     [SerializeField] private Vector3 punchScale;
     [SerializeField] private float punchScaleDuration;
@@ -19,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshPro numberText;
 
     [HideInInspector] public int currentPlayerNumber;
+
+    private float initialYValue;
 
     public static bool canMove { get; private set; } = true;
     private const int MAX_RAY_DISTANCE = 50;
@@ -39,6 +43,10 @@ public class PlayerController : MonoBehaviour
     {
         currentPlayerNumber = LevelManager.Instance.initialPlayerNumber;
         numberText.text = currentPlayerNumber.ToString();
+
+        initialYValue = playerGraphic.transform.localPosition.y;
+
+        JumpTween();
     }
 
     private void Move(Vector3 direction)
@@ -148,5 +156,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.DOPunchScale(new Vector3(punchScale.x, punchScale.y, -punchScale.z), punchScaleDuration, punchScaleVibrato, punchScaleElasticity);
         }
+    }
+
+    private void JumpTween()
+    {
+        playerGraphic.transform.DOMoveY(initialYValue + 0.8f, 0.2f)
+            .SetLoops(-1, LoopType.Yoyo);
     }
 }

@@ -64,8 +64,8 @@ public class CanvasManager : MonoBehaviour
         EventManager.CallLevelFailEvent();
     }
 
-    public void RestartScene()
+    public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        EventManager.CallRestartLevelEvent();
     }
 }
