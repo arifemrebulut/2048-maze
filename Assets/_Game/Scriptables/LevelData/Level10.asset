@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8b38accc8592345ba802e92df32984, type: 3}
   m_Name: Level10
   m_EditorClassIdentifier: 
-  initialPlayerNumber: 4
+  initialPlayerNumber: 2
   levelTexture: {fileID: 2800000, guid: 1c6b7e54d908eeb40a66ea022a2075fa, type: 3}
